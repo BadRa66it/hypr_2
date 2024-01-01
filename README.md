@@ -1,11 +1,11 @@
 <div align="center">
-    <h1>Balcony🚊</h1>
+    <h1>Balcony</h1>
 </div>
 
-# Gallery 📷
+# Gallery
 ![](./ScreenShots/HyprLand/Rice.png)
 
-# Installations 📦
+# Installations
 
 > Just [R.T.F.M](https://en.wikipedia.org/wiki/RTFM)
 
@@ -15,7 +15,7 @@
   yay -S hyprland-git
   ```
 
-### Base setups 💻:
+### Base setups:
 
 - Install waybar, Rofi, Dunst, kitty terminal, swaybg, swaylock-effects, swayidle, pamixer, light, Brillo, Canva:
 
@@ -23,7 +23,7 @@
 yay -S waybar-hyprland rofi dunst kitty swaybg swaylock-effects-git swayidle pamixer light brillo canva
 ```
 
-### Necessary Font 🔑:
+### Necessary Font:
 
 - [JetBrains Mono Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/JetBrainsMono.zip)
 
@@ -42,14 +42,14 @@ Then run this command for your system to detect the newly installed fonts.
 fc-cache -fv
 ```
 
-## Copy Files 💾
+## Copy Files
 
 ```
-git clone -b balcony🚊 https://github.com/iamverysimp1e/dots
+git clone https://github.com/BadRa66it/hypr_2
 cd dots
 cp -r ./configs/* ~/.config/
 ```
 
 > Finally, now you can login with Late Night Hyprland Rice
 
-Congratulations, at this point you successfully have installed Hyprland Balcony Rice 🚊
+Congratulations, at this point you successfully have installed Hyprland Balcony Rice
