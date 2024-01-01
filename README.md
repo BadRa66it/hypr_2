@@ -45,8 +45,8 @@ fc-cache -fv
 ## Copy Files
 
 ```
-git clone https://github.com/BadRa66it/hypr_2
-cd dots
+git clone https://github.com/BadRa66it/hypr_2.git
+cd hypr_2
 cp -r ./configs/* ~/.config/
 ```
 
