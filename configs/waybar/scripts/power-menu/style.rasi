@@ -143,7 +143,6 @@ element {
     background-color:            @background-alt;
     text-color:                  @foreground;
     cursor:                      pointer;
-    transition:                  all 0.3s ease;
 }
 
 element-text {
@@ -161,12 +160,6 @@ element selected.normal {
     text-color:                  @foreground;
 }
 
-element:hover {
-    background-color:            rgba(255, 255, 255, 0.08);
-    border-color:                rgba(255, 255, 255, 0.2);
-}
-
-/* Specific colors for different actions */
 element.alternate.normal {
     background-color:            rgba(255, 255, 255, 0.03);
 }
