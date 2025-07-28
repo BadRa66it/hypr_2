@@ -6,15 +6,18 @@ configuration {
 
 /*****----- Global Properties -----*****/
 * {
-    /* Winter color scheme */
-    background:                 #1a1b26e6;
-    background-alt:             #24283be6;
+    /* Winter color palette */
+    background:                 rgba(26, 27, 38, 0.95);
+    background-alt:             rgba(255, 255, 255, 0.05);
     foreground:                 #c0caf5;
-    selected:                   #7aa2f7;
-    active:                     #9ece6a;
-    urgent:                     #f7768e;
+    selected:                   rgba(122, 162, 247, 0.3);
+    active:                     rgba(158, 206, 106, 0.3);
+    urgent:                     rgba(247, 118, 142, 0.3);
     
-    border-radius:              15px;
+    /* Global settings */
+    background-color:           transparent;
+    text-color:                 @foreground;
+    border-radius:              20px;
 }
 
 /*****----- Main Window -----*****/
@@ -23,48 +26,128 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       350px; /* Reduced for a power menu */
+    width:                       850px;
     x-offset:                    0px;
     y-offset:                    0px;
-    
-    border:                      2px solid rgba(255, 255, 255, 0.1);
-    border-radius:               20px;
+
+    enabled:                     true;
+    margin:                      0px;
+    padding:                     0px;
+    border:                      2px solid;
+    border-radius:               25px;
+    border-color:                rgba(255, 255, 255, 0.1);
     background-color:            @background;
 }
 
 /*****----- Main Box -----*****/
 mainbox {
+    enabled:                     true;
     spacing:                     20px;
-    padding:                     20px;
+    margin:                      0px;
+    padding:                     40px;
+    border:                      0px solid;
+    border-radius:               0px;
     background-color:            transparent;
-    children:                    [ "listview" ];
+    children:                    [ "inputbar", "listview" ];
+}
+
+/*****----- Inputbar -----*****/
+inputbar {
+    enabled:                     true;
+    spacing:                     15px;
+    margin:                      0px;
+    padding:                     0px;
+    border:                      0px;
+    border-radius:               0px;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    children:                    [ "textbox-prompt-colon", "prompt"];
+}
+
+textbox-prompt-colon {
+    enabled:                     true;
+    expand:                      false;
+    str:                         "❄️";
+    padding:                     15px 20px;
+    border-radius:               15px;
+    background-color:            @background-alt;
+    border:                      1px solid;
+    border-color:                rgba(255, 255, 255, 0.1);
+    text-color:                  @foreground;
+    font:                        "JetBrainsMono Nerd Font 20";
+}
+
+prompt {
+    enabled:                     true;
+    padding:                     15px 20px;
+    border-radius:               15px;
+    background-color:            @background-alt;
+    border:                      1px solid;
+    border-color:                rgba(255, 255, 255, 0.1);
+    text-color:                  @foreground;
+}
+
+/*****----- Message -----*****/
+message {
+    enabled:                     true;
+    margin:                      0px;
+    padding:                     15px;
+    border:                      1px solid;
+    border-radius:               15px;
+    border-color:                rgba(255, 255, 255, 0.1);
+    background-color:            @background-alt;
+    text-color:                  @foreground;
+}
+
+textbox {
+    background-color:            transparent;
+    text-color:                  inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+    placeholder-color:           @foreground;
+    blink:                       true;
+    markup:                      true;
 }
 
 /*****----- Listview -----*****/
 listview {
-    columns:                     1; /* Power menu is a vertical list */
-    lines:                       5; /* For Shutdown, Reboot, Lock, Suspend, Logout */
+    enabled:                     true;
+    columns:                     5;
+    lines:                       1;
     cycle:                       true;
+    dynamic:                     true;
     scrollbar:                   false;
     layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;
     
     spacing:                     15px;
+    margin:                      0px;
+    padding:                     0px;
+    border:                      0px solid;
     background-color:            transparent;
+    text-color:                  @foreground;
     cursor:                      "default";
 }
 
 /*****----- Elements -----*****/
 element {
-    padding:                     15px;
-    border:                      0px;
-    border-radius:               15px;
-    background-color:            transparent;
+    enabled:                     true;
+    spacing:                     0px;
+    margin:                      0px;
+    padding:                     30px 15px;
+    border:                      2px solid;
+    border-radius:               20px;
+    border-color:                rgba(255, 255, 255, 0.1);
+    background-color:            @background-alt;
     text-color:                  @foreground;
     cursor:                      pointer;
+    transition:                  all 0.3s ease;
 }
 
 element-text {
-    font:                        "JetBrainsMono Nerd Font 14";
+    font:                        "JetBrainsMono Nerd Font 13";
     background-color:            transparent;
     text-color:                  inherit;
     cursor:                      inherit;
@@ -72,11 +155,18 @@ element-text {
     horizontal-align:            0.5;
 }
 
-element selected {
+element selected.normal {
     background-color:            @selected;
-    text-color:                  #1a1b26;
+    border-color:                rgba(122, 162, 247, 0.5);
+    text-color:                  @foreground;
 }
 
 element:hover {
-    background-color:            @background-alt;
+    background-color:            rgba(255, 255, 255, 0.08);
+    border-color:                rgba(255, 255, 255, 0.2);
+}
+
+/* Specific colors for different actions */
+element.alternate.normal {
+    background-color:            rgba(255, 255, 255, 0.03);
 }
