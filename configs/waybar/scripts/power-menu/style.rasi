@@ -23,123 +23,48 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       800px;
+    width:                       350px; /* Reduced for a power menu */
     x-offset:                    0px;
     y-offset:                    0px;
     
-    enabled:                     true;
-    margin:                      0px;
-    padding:                     0px;
-    border:                      2px solid;
+    border:                      2px solid rgba(255, 255, 255, 0.1);
     border-radius:               20px;
-    border-color:                rgba(255, 255, 255, 0.1);
     background-color:            @background;
 }
 
 /*****----- Main Box -----*****/
 mainbox {
-    enabled:                     true;
     spacing:                     20px;
-    margin:                      0px;
-    padding:                     40px;
-    border:                      0px solid;
-    border-radius:               0px;
+    padding:                     20px;
     background-color:            transparent;
-    children:                    [ "inputbar", "listview" ];
-}
-
-/*****----- Inputbar -----*****/
-inputbar {
-    enabled:                     true;
-    spacing:                     15px;
-    margin:                      0px;
-    padding:                     0px;
-    border:                      0px;
-    border-radius:               0px;
-    background-color:            transparent;
-    text-color:                  @foreground;
-    children:                    [ "textbox-prompt-colon", "prompt"];
-}
-
-textbox-prompt-colon {
-    enabled:                     true;
-    expand:                      false;
-    str:                         "雪";
-    padding:                     15px 20px;
-    border-radius:               15px;
-    background-color:            rgba(255, 255, 255, 0.1);
-    text-color:                  @foreground;
-    font:                        "JetBrainsMono Nerd Font 20";
-}
-
-prompt {
-    enabled:                     true;
-    padding:                     15px;
-    border-radius:               15px;
-    background-color:            rgba(255, 255, 255, 0.05);
-    text-color:                  @foreground;
-}
-
-/*****----- Message -----*****/
-message {
-    enabled:                     true;
-    margin:                      0px;
-    padding:                     15px;
-    border:                      0px solid;
-    border-radius:               15px;
-    background-color:            rgba(255, 255, 255, 0.05);
-    text-color:                  @foreground;
-}
-
-textbox {
-    background-color:            transparent;
-    text-color:                  inherit;
-    vertical-align:              0.5;
-    horizontal-align:            0.5;
-    placeholder-color:           @foreground;
-    blink:                       true;
-    markup:                      true;
+    children:                    [ "listview" ];
 }
 
 /*****----- Listview -----*****/
 listview {
-    enabled:                     true;
-    columns:                     5;
-    lines:                       1;
+    columns:                     1; /* Power menu is a vertical list */
+    lines:                       5; /* For Shutdown, Reboot, Lock, Suspend, Logout */
     cycle:                       true;
-    dynamic:                     true;
     scrollbar:                   false;
     layout:                      vertical;
-    reverse:                     false;
-    fixed-height:                true;
-    fixed-columns:               true;
     
     spacing:                     15px;
-    margin:                      0px;
-    padding:                     0px;
-    border:                      0px solid;
     background-color:            transparent;
-    text-color:                  @foreground;
     cursor:                      "default";
 }
 
 /*****----- Elements -----*****/
 element {
-    enabled:                     true;
-    spacing:                     0px;
-    margin:                      0px;
-    padding:                     20px 10px;
-    border:                      2px solid;
+    padding:                     15px;
+    border:                      0px;
     border-radius:               15px;
-    border-color:                rgba(255, 255, 255, 0.1);
-    background-color:            rgba(255, 255, 255, 0.05);
+    background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      pointer;
-    transition:                  all 0.3s ease;
 }
 
 element-text {
-    font:                        "JetBrainsMono Nerd Font 11";
+    font:                        "JetBrainsMono Nerd Font 14";
     background-color:            transparent;
     text-color:                  inherit;
     cursor:                      inherit;
@@ -147,18 +72,11 @@ element-text {
     horizontal-align:            0.5;
 }
 
-element selected.normal {
-    background-color:            rgba(122, 162, 247, 0.2);
-    text-color:                  @foreground;
-    border-color:                @selected;
+element selected {
+    background-color:            @selected;
+    text-color:                  #1a1b26;
 }
 
 element:hover {
-    background-color:            rgba(255, 255, 255, 0.1);
-    border-color:                rgba(255, 255, 255, 0.2);
-}
-
-/* Specific styling for different options */
-element.alternate.normal {
-    background-color:            rgba(255, 255, 255, 0.03);
+    background-color:            @background-alt;
 }
