@@ -1,109 +1,156 @@
 {
-    "height": 35, // Waybar height (to be removed for auto height)
-    "layer": "top", // Waybar at top layer
-    "modules-left": ["custom/launcher", "cpu", "memory", "wlr/workspaces", "custom/weather"],
-    "modules-right": ["tray", "network", "pulseaudio",  "backlight", "battery", "custom/lock", "clock", "custom/power-menu"],
-    "wlr/workspaces": {
-      "format": "{icon}",
-      "on-click": "activate",
-      "format-icons": {
-        "active": " 󰮯",
-        "default": ""
-      }
+    "layer": "top",
+    "position": "top",
+    "height": 35,
+    "margin-top": 10,
+    "margin-left": 10,
+    "margin-right": 10,
+    "spacing": 0,
+    
+    "modules-left": ["custom/launcher", "hyprland/workspaces", "hyprland/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["tray", "cpu", "memory", "pulseaudio", "network", "backlight", "battery", "custom/lock", "custom/power-menu"],
+    
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{icon}",
+        "persistent_workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": []
+        },
+        "format-icons": {
+            "1": "一",
+            "2": "二",
+            "3": "三",
+            "4": "四",
+            "5": "五",
+            "6": "六",
+            "7": "七",
+            "8": "八",
+            "9": "九",
+            "10": "十",
+            "urgent": "急",
+            "focused": "",
+            "default": ""
+        }
     },
+    
     "hyprland/window": {
-        "format": "{}"
+        "format": "{}",
+        "max-length": 50,
+        "separate-outputs": true
     },
-    "tray": {
-        "spacing": 10
-    },
+    
     "clock": {
         "format": "{:%H:%M}",
-        "format-alt": "{:%b %d %Y}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+        "format-alt": "{:%A, %B %d}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "on-click-right": "mode",
+            "format": {
+                "months": "<span color='#f5f5f5'><b>{}</b></span>",
+                "days": "<span color='#e8e8e8'><b>{}</b></span>",
+                "weeks": "<span color='#99a1b3'><b>週{}</b></span>",
+                "weekdays": "<span color='#d4d4d4'><b>{}</b></span>",
+                "today": "<span color='#87ceeb'><b><u>{}</u></b></span>"
+            }
+        }
     },
-
+    
     "cpu": {
-      "interval": 10,
-      "format": " {}%",
-      "max-length": 10,
-      "on-click": ""
+        "interval": 10,
+        "format": " {usage}%",
+        "max-length": 10,
+        "tooltip": true
     },
+    
     "memory": {
         "interval": 30,
-        "format": " {}%",
-        "format-alt":" {used:0.1f}GB",
-        "max-length": 10
+        "format": " {percentage}%",
+        "format-alt": " {used:0.1f}GB",
+        "max-length": 10,
+        "tooltip-format": "RAM: {used:0.1f}G/{total:0.1f}G"
     },
+    
     "backlight": {
         "device": "eDP-1",
         "format": "{icon}",
-        "tooltip-format": "{percent}",
-        "format-icons": ["󱩎 ", "󱩏 ", "󱩐 ", "󱩑 ", "󱩒 ", "󱩓 ", "󱩔 ", "󱩕 ", "󱩖 ", "󰛨 "],
-
+        "tooltip-format": "明るさ: {percent}%",
+        "format-icons": ["󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"],
+        "on-scroll-up": "brillo -A 5",
+        "on-scroll-down": "brillo -U 5"
     },
+    
     "network": {
-        /* "format-wifi": "直", */
         "format-wifi": "{icon}",
-        "format-ethernet": " ",
-        "format-disconnected": "睊",
-        "tooltip-format": "{essid}",
-        "on-click": "~/.config/waybar/scripts/network/rofi-network-manager.sh",
-        "format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"],
+        "format-ethernet": " ",
+        "format-disconnected": "󰤮",
+        "tooltip-format": "{essid} ({signalStrength}%)",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
     },
-
+    
     "pulseaudio": {
         "format": "{icon}",
-        "format-muted": "婢",
+        "format-muted": "󰝟",
         "format-icons": {
-            "default": ["", "", "墳"]
+            "default": ["󰕿", "󰖀", "󰕾"]
         },
-        "on-click": "pavucontrol &"
+        "on-click": "pavucontrol",
+        "tooltip-format": "音量: {volume}%"
     },
-
+    
     "battery": {
-      "bat": "BAT0",
-      "adapter": "ADP0",
-      "interval": 60,
-      "states": {
-          "warning": 30,
-          "critical": 15
-      },
-      "max-length": 20,
-      "format": "{icon} ",
-      "format-warning": "{icon}",
-      "format-critical": "{icon}",
-      "format-charging": "<span font-family='Font Awesome 6 Free'></span>",
-      "format-plugged": "ﮣ", 
-
-      "format-alt": "{icon} {time}",
-      "format-full": "ﮣ", 
-      "format-icons": ["󱊡", "󱊢", "󱊣"]
+        "bat": "BAT0",
+        "adapter": "ADP0",
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "max-length": 20,
+        "format": "{icon}",
+        "format-warning": "{icon}",
+        "format-critical": "{icon}",
+        "format-charging": "󰂄",
+        "format-plugged": "󰚥",
+        "format-alt": "{icon} {time}",
+        "format-full": "󰁹",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip-format": "電池: {capacity}% - {time}"
     },
-    "custom/weather": {
-      "exec": "python3 ~/.config/waybar/scripts/weather.py",
-      "restart-interval": 300,
-      "return-type": "json"
-    },   
-   "custom/lock": {
-       "tooltip" : false,
-       "on-click": "swaylock",
-       "format" : ""
+    
+    "tray": {
+        "icon-size": 16,
+        "spacing": 10
     },
-   "custom/spotify": {
-        "exec": "python3 ~/.config/waybar/scripts/mediaplayer.py --player spotify",
-        "format": " {}",
-        "return-type": "json",
-        "on-click": "playerctl play-pause",
-        "on-double-click-right": "playerctl next",
-        "on-scroll-down": "playerctl previous"
+    
+    "custom/lock": {
+        "tooltip": false,
+        "on-click": "swaylock",
+        "format": "󰌾"
     },
+    
     "custom/power-menu": {
-        "format": " ⏻ ",
+        "format": "󰐥",
         "on-click": "bash ~/.config/waybar/scripts/power-menu/powermenu.sh &",
-    }, 
-    "custom/launcher": {
-        "format": "",
-        "on-click": "rofi -show drun &"
+        "tooltip-format": "電源メニュー"
     },
+    
+    "custom/launcher": {
+        "format": "雪",
+        "on-click": "rofi -show drun &",
+        "tooltip-format": "アプリケーション"
+    }
 }
