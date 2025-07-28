@@ -1,5 +1,5 @@
 <div align="center">
-    <h1>Balcony</h1>
+    <h1>ICE</h1>
 </div>
 
 # Gallery
