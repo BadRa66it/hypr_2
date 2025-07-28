@@ -1,28 +1,24 @@
-/**
- *
- * Author : Aditya Shakya (adi1090x)
- * Github : @adi1090x
- * 
- * Rofi Theme File
- * Rofi Version: 1.7.3
- **/
-
 /*****----- Configuration -----*****/
 configuration {
     show-icons:                 false;
+    font:                      "JetBrainsMono Nerd Font 12";
 }
 
 /*****----- Global Properties -----*****/
-@import                          "./shared/colors.rasi"
-@import                          "./shared/fonts.rasi"
-
-/*
-USE_BUTTONS=YES
-*/
+* {
+    /* Winter color scheme */
+    background:                 #1a1b26e6;
+    background-alt:             #24283be6;
+    foreground:                 #c0caf5;
+    selected:                   #7aa2f7;
+    active:                     #9ece6a;
+    urgent:                     #f7768e;
+    
+    border-radius:              15px;
+}
 
 /*****----- Main Window -----*****/
 window {
-    /* properties for window widget */
     transparency:                "real";
     location:                    center;
     anchor:                      center;
@@ -30,27 +26,24 @@ window {
     width:                       800px;
     x-offset:                    0px;
     y-offset:                    0px;
-
-    /* properties for all widgets */
+    
     enabled:                     true;
     margin:                      0px;
     padding:                     0px;
-    border:                      0px solid;
-    border-radius:               10px;
-    border-color:                @selected;
-    cursor:                      "default";
+    border:                      2px solid;
+    border-radius:               20px;
+    border-color:                rgba(255, 255, 255, 0.1);
     background-color:            @background;
 }
 
 /*****----- Main Box -----*****/
 mainbox {
     enabled:                     true;
-    spacing:                     5px;
+    spacing:                     20px;
     margin:                      0px;
-    padding:                     30px;
+    padding:                     40px;
     border:                      0px solid;
-    border-radius:               10px;
-    border-color:                @selected;
+    border-radius:               0px;
     background-color:            transparent;
     children:                    [ "inputbar", "listview" ];
 }
@@ -62,61 +55,50 @@ inputbar {
     margin:                      0px;
     padding:                     0px;
     border:                      0px;
-    border-radius:               10px;
-    border-color:                @selected;
+    border-radius:               0px;
     background-color:            transparent;
     text-color:                  @foreground;
     children:                    [ "textbox-prompt-colon", "prompt"];
 }
 
-dummy {
-    background-color:            transparent;
-}
-
 textbox-prompt-colon {
     enabled:                     true;
     expand:                      false;
-    str:                         "";
-    padding:                     12px 16px;
-    border-radius:               10px;
-    background-color:            @urgent;
-    text-color:                  @background;
+    str:                         "雪";
+    padding:                     15px 20px;
+    border-radius:               15px;
+    background-color:            rgba(255, 255, 255, 0.1);
+    text-color:                  @foreground;
+    font:                        "JetBrainsMono Nerd Font 20";
 }
+
 prompt {
     enabled:                     true;
-    padding:                     12px;
-    border-radius:               10px;
-    background-color:            @active;
-    text-color:                  @background;
+    padding:                     15px;
+    border-radius:               15px;
+    background-color:            rgba(255, 255, 255, 0.05);
+    text-color:                  @foreground;
 }
 
 /*****----- Message -----*****/
 message {
     enabled:                     true;
     margin:                      0px;
-    padding:                     12px;
+    padding:                     15px;
     border:                      0px solid;
-    border-radius:               10px;
-    border-color:                @selected;
-    background-color:            @background-alt;
+    border-radius:               15px;
+    background-color:            rgba(255, 255, 255, 0.05);
     text-color:                  @foreground;
 }
+
 textbox {
-    background-color:            inherit;
+    background-color:            transparent;
     text-color:                  inherit;
     vertical-align:              0.5;
     horizontal-align:            0.5;
     placeholder-color:           @foreground;
     blink:                       true;
     markup:                      true;
-}
-error-message {
-    padding:                     12px;
-    border:                      0px solid;
-    border-radius:               10px;
-    border-color:                @selected;
-    background-color:            @background;
-    text-color:                  @foreground;
 }
 
 /*****----- Listview -----*****/
@@ -136,8 +118,6 @@ listview {
     margin:                      0px;
     padding:                     0px;
     border:                      0px solid;
-    border-radius:               10px;
-    border-color:                @selected;
     background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      "default";
@@ -148,24 +128,37 @@ element {
     enabled:                     true;
     spacing:                     0px;
     margin:                      0px;
-    padding:                     40px 10px;
-    border:                      0px solid;
-    border-radius:               10px;
-    border-color:                @selected;
-    background-color:            @background-alt;
+    padding:                     20px 10px;
+    border:                      2px solid;
+    border-radius:               15px;
+    border-color:                rgba(255, 255, 255, 0.1);
+    background-color:            rgba(255, 255, 255, 0.05);
     text-color:                  @foreground;
     cursor:                      pointer;
+    transition:                  all 0.3s ease;
 }
+
 element-text {
-    font:                        "feather bold 32";
+    font:                        "JetBrainsMono Nerd Font 11";
     background-color:            transparent;
     text-color:                  inherit;
     cursor:                      inherit;
     vertical-align:              0.5;
     horizontal-align:            0.5;
 }
+
 element selected.normal {
-    background-color:            var(selected);
-    text-color:                  var(background);
+    background-color:            rgba(122, 162, 247, 0.2);
+    text-color:                  @foreground;
+    border-color:                @selected;
 }
 
+element:hover {
+    background-color:            rgba(255, 255, 255, 0.1);
+    border-color:                rgba(255, 255, 255, 0.2);
+}
+
+/* Specific styling for different options */
+element.alternate.normal {
+    background-color:            rgba(255, 255, 255, 0.03);
+}

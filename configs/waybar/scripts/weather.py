@@ -4,8 +4,9 @@ import json
 import requests
 from datetime import datetime
 
+# Зимние иконки погоды
 WEATHER_CODES = {
-    '113': '🌈',
+    '113': '☀️',
     '116': '⛅️',
     '119': '☁️',
     '122': '☁️',
@@ -55,61 +56,76 @@ WEATHER_CODES = {
     '395': '❄️'
 }
 
+# Японские названия погодных условий
+WEATHER_TRANSLATIONS = {
+    "Fog": "霧",
+    "Frost": "霜",
+    "Overcast": "曇り",
+    "Rain": "雨",
+    "Snow": "雪",
+    "Sunshine": "晴れ",
+    "Thunder": "雷",
+    "Wind": "風"
+}
+
 data = {}
 
-
-weather = requests.get("https://wttr.in/?format=j1").json()
-
-
-def format_time(time):
-    return time.replace("00", "").zfill(2)
-
-
-def format_temp(temp):
-    return (hour['FeelsLikeC']+"°").ljust(3)
-
-
-def format_chances(hour):
-    chances = {
-        "chanceoffog": "Fog",
-        "chanceoffrost": "Frost",
-        "chanceofovercast": "Overcast",
-        "chanceofrain": "Rain",
-        "chanceofsnow": "Snow",
-        "chanceofsunshine": "Sunshine",
-        "chanceofthunder": "Thunder",
-        "chanceofwindy": "Wind"
-    }
-
-    conditions = []
-    for event in chances.keys():
-        if int(hour[event]) > 0:
-            conditions.append(chances[event]+" "+hour[event]+"%")
-    return ", ".join(conditions)
-
-
-data['text'] = WEATHER_CODES[weather['current_condition'][0]['weatherCode']] + \
-    " "+weather['current_condition'][0]['FeelsLikeC']+"°"
-
-data['tooltip'] = f"<b>{weather['current_condition'][0]['weatherDesc'][0]['value']} {weather['current_condition'][0]['temp_C']}°C</b>\n"
-data['tooltip'] += f"Feels like: {weather['current_condition'][0]['FeelsLikeC']}°C\n"
-data['tooltip'] += f"Wind: {weather['current_condition'][0]['windspeedKmph']}Km/h\n"
-data['tooltip'] += f"Humidity: {weather['current_condition'][0]['humidity']}%\n"
-for i, day in enumerate(weather['weather']):
-    data['tooltip'] += f"\n<b>"
-    if i == 0:
-        data['tooltip'] += "Today, "
-    if i == 1:
-        data['tooltip'] += "Tomorrow, "
-    data['tooltip'] += f"{day['date']}</b>\n"
-    data['tooltip'] += f"⬆️ {day['maxtempC']}° ⬇️ {day['mintempC']}° "
-    data['tooltip'] += f"🌅 {day['astronomy'][0]['sunrise']} 🌇 {day['astronomy'][0]['sunset']}\n"
-    for hour in day['hourly']:
+try:
+    weather = requests.get("https://wttr.in/?format=j1").json()
+    
+    def format_time(time):
+        return time.replace("00", "").zfill(2)
+    
+    def format_temp(temp):
+        return (temp+"°").ljust(3)
+    
+    def format_chances(hour):
+        chances = {
+            "chanceoffog": "Fog",
+            "chanceoffrost": "Frost",
+            "chanceofovercast": "Overcast",
+            "chanceofrain": "Rain",
+            "chanceofsnow": "Snow",
+            "chanceofsunshine": "Sunshine",
+            "chanceofthunder": "Thunder",
+            "chanceofwindy": "Wind"
+        }
+        
+        conditions = []
+        for event in chances.keys():
+            if int(hour[event]) > 0:
+                jp_condition = WEATHER_TRANSLATIONS.get(chances[event], chances[event])
+                conditions.append(f"{jp_condition} {hour[event]}%")
+        return ", ".join(conditions)
+    
+    # Основной текст
+    data['text'] = WEATHER_CODES[weather['current_condition'][0]['weatherCode']] + \
+        " "+weather['current_condition'][0]['FeelsLikeC']+"°"
+    
+    # Подсказка
+    data['tooltip'] = f"<b>天気: {weather['current_condition'][0]['weatherDesc'][0]['value']} {weather['current_condition'][0]['temp_C']}°C</b>\n"
+    data['tooltip'] += f"体感温度: {weather['current_condition'][0]['FeelsLikeC']}°C\n"
+    data['tooltip'] += f"風速: {weather['current_condition'][0]['windspeedKmph']}km/h\n"
+    data['tooltip'] += f"湿度: {weather['current_condition'][0]['humidity']}%\n"
+    
+    for i, day in enumerate(weather['weather']):
+        data['tooltip'] += f"\n<b>"
         if i == 0:
-            if int(format_time(hour['time'])) < datetime.now().hour-2:
-                continue
-        data['tooltip'] += f"{format_time(hour['time'])} {WEATHER_CODES[hour['weatherCode']]} {format_temp(hour['FeelsLikeC'])} {hour['weatherDesc'][0]['value']}, {format_chances(hour)}\n"
+            data['tooltip'] += "今日, "
+        if i == 1:
+            data['tooltip'] += "明日, "
+        data['tooltip'] += f"{day['date']}</b>\n"
+        data['tooltip'] += f"最高 {day['maxtempC']}° 最低 {day['mintempC']}° "
+        data['tooltip'] += f"日出 {day['astronomy'][0]['sunrise']} 日没 {day['astronomy'][0]['sunset']}\n"
+        
+        for hour in day['hourly']:
+            if i == 0:
+                if int(format_time(hour['time'])) < datetime.now().hour-2:
+                    continue
+            data['tooltip'] += f"{format_time(hour['time'])}時 {WEATHER_CODES[hour['weatherCode']]} {format_temp(hour['FeelsLikeC'])} {hour['weatherDesc'][0]['value']}, {format_chances(hour)}\n"
 
+except Exception as e:
+    data['text'] = "❄️ N/A"
+    data['tooltip'] = "天気情報を取得できません"
 
 print(json.dumps(data))
-

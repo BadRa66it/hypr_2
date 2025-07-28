@@ -7,7 +7,7 @@
     "margin-right": 10,
     "spacing": 0,
     
-    "modules-left": ["custom/launcher", "hyprland/workspaces", "hyprland/window"],
+    "modules-left": ["custom/launcher", "hyprland/workspaces", "hyprland/window", "custom/weather"],
     "modules-center": ["clock"],
     "modules-right": ["tray", "cpu", "memory", "pulseaudio", "network", "backlight", "battery", "custom/lock", "custom/power-menu"],
     
@@ -152,5 +152,13 @@
         "format": "雪",
         "on-click": "rofi -show drun &",
         "tooltip-format": "アプリケーション"
+    },
+
+    "custom/weather": {
+        "exec": "python3 ~/.config/waybar/scripts/weather.py",
+        "restart-interval": 300,
+        "return-type": "json",
+        "format": "{}",
+        "tooltip": true
     }
 }

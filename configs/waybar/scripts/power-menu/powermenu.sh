@@ -1,27 +1,27 @@
 #!/usr/bin/env bash
 
 # Current Theme
-dir="~/.config/waybar/scripts/power-menu/"
+dir="$HOME/.config/waybar/scripts/power-menu"
 theme='style'
 
 # CMDs
 uptime="`uptime -p | sed -e 's/up //g'`"
 host=`hostname`
 
-# Options
-shutdown=''
-reboot=''
-lock=''
-suspend=' '
-logout=' '
-yes=' '
-no=''
+# Options with Japanese
+shutdown='⏻ シャットダウン'
+reboot='󰜉 再起動'
+lock='󰌾 ロック'
+suspend='󰒲 スリープ'
+logout='󰍃 ログアウト'
+yes='はい'
+no='いいえ'
 
 # Rofi CMD
 rofi_cmd() {
 	rofi -dmenu \
-		-p "Uptime: $uptime" \
-		-mesg "Uptime: $uptime" \
+		-p "❄️ $host" \
+		-mesg "稼働時間: $uptime" \
 		-theme ${dir}/${theme}.rasi
 }
 
@@ -33,8 +33,8 @@ confirm_cmd() {
 		-theme-str 'element-text {horizontal-align: 0.5;}' \
 		-theme-str 'textbox {horizontal-align: 0.5;}' \
 		-dmenu \
-		-p 'Confirmation' \
-		-mesg 'Are you Sure?' \
+		-p '確認' \
+		-mesg '本当によろしいですか？' \
 		-theme ${dir}/${theme}.rasi
 }
 
@@ -61,18 +61,8 @@ run_cmd() {
 			amixer set Master mute
 			systemctl suspend
 		elif [[ $1 == '--logout' ]]; then
-            if [[ "$DESKTOP_SESSION" == 'openbox' ]]; then
-                openbox --exit
-            elif [[ "$DESKTOP_SESSION" == 'bspwm' ]]; then
-                bspc quit
-            elif [[ "$DESKTOP_SESSION" == 'i3' ]]; then
-                i3-msg exit
-            elif [[ "$DESKTOP_SESSION" == 'plasma' ]]; then
-                qdbus org.kde.ksmserver /KSMServer logout 0 0 0
-            elif [[ "$DESKTOP_SESSION" == 'hyprland' ]]; then
-                hyprctl dispatch exit 1
-            fi
-        fi
+			hyprctl dispatch exit
+		fi
 	else
 		exit 0
 	fi
@@ -88,11 +78,7 @@ case ${chosen} in
 		run_cmd --reboot
         ;;
     $lock)
-		if [[ -x '/usr/bin/betterlockscreen' ]]; then
-			betterlockscreen -l
-		elif [[ -x '/usr/bin/i3lock' ]]; then
-			i3lock
-		fi
+		swaylock
         ;;
     $suspend)
 		run_cmd --suspend
@@ -101,4 +87,3 @@ case ${chosen} in
 		run_cmd --logout
         ;;
 esac
-
