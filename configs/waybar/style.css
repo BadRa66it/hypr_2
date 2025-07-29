@@ -2,69 +2,54 @@
     font-family: "JetBrainsMono Nerd Font", "Noto Sans CJK JP", "Font Awesome 6 Free";
     font-size: 13px;
     font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 window#waybar {
     background: transparent;
-    color: #e5e9f0; /* Soft white text */
+    color: #e5e9f0;
 }
 
-#custom-launcher,
-#workspaces,
-#window,
-#clock,
-#cpu,
-#memory,
-#battery,
-#network,
-#pulseaudio,
-#backlight,
-#tray,
-#custom-lock,
-#custom-power-menu,
-#custom-weather,
-#custom-mediaplayer {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+/* Base style for all modules */
+#custom-launcher, #workspaces, #window, #clock, #cpu, #memory, #battery,
+#network, #pulseaudio, #backlight, #tray, #custom-lock, #custom-power-menu,
+#custom-weather, #custom-mediaplayer {
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
     margin: 6px 5px;
     padding: 0 13px;
 }
 
 /* Hover effect for most modules */
-#cpu:hover,
-#memory:hover,
-#battery:hover,
-#network:hover,
-#pulseaudio:hover,
-#backlight:hover,
-#clock:hover,
-#custom-weather:hover,
-#custom-mediaplayer:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
+#cpu:hover, #memory:hover, #battery:hover, #network:hover, #pulseaudio:hover,
+#backlight:hover, #clock:hover, #custom-weather:hover, #custom-mediaplayer:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     transition: all 0.3s ease;
 }
 
+/* Launcher "Yuki" - 雪 */
 #custom-launcher {
-    background: linear-gradient(135deg, rgba(173, 216, 230, 0.2), rgba(255, 255, 255, 0.2));
-    border-color: rgba(173, 216, 230, 0.3);
+    background: linear-gradient(135deg, rgba(173, 216, 230, 0.25), rgba(255, 255, 255, 0.25));
+    border-color: rgba(173, 216, 230, 0.4);
     padding: 0 18px;
     font-size: 18px;
     color: #ffffff;
 }
 
 #custom-launcher:hover {
-    background: linear-gradient(135deg, rgba(173, 216, 230, 0.4), rgba(255, 255, 255, 0.3));
+    background: linear-gradient(135deg, rgba(173, 216, 230, 0.4), rgba(255, 255, 255, 0.35));
     box-shadow: 0 0 15px rgba(173, 216, 230, 0.5);
 }
 
+/* Workspaces with Kanji */
 #workspaces {
     padding: 0 5px;
 }
 
 #workspaces button {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.7);
     padding: 0 8px;
     margin: 4px 3px;
     border-radius: 8px;
@@ -77,19 +62,18 @@ window#waybar {
 
 #workspaces button.active {
     color: #ffffff;
-    background: linear-gradient(45deg, rgba(173, 216, 230, 0.3), rgba(255, 255, 255, 0.2));
-    box-shadow: 0 0 10px rgba(173, 216, 230, 0.4);
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    background: linear-gradient(45deg, rgba(173, 216, 230, 0.4), rgba(255, 255, 255, 0.3));
+    box-shadow: 0 0 10px rgba(173, 216, 230, 0.5);
 }
 
 #workspaces button:hover {
     color: #ffffff;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.2);
 }
 
 /* Window Title */
 #window {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.85);
     padding: 0 15px;
 }
 
@@ -149,7 +133,7 @@ window#waybar {
 
 /* Tooltips */
 tooltip {
-    background: rgba(30, 30, 42, 0.85); /* Dark, semi-transparent base */
+    background: rgba(30, 30, 42, 0.9);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
 }
