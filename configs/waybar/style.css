@@ -157,6 +157,11 @@ window#waybar.empty #window {
     }
 }
 
+/* システムトレイ */
+#tray {
+    padding: 0 12px;
+}
+
 /* 特別なボタン */
 #custom-lock {
     min-width: 40px;
