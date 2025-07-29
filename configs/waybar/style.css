@@ -1,188 +1,174 @@
-/* 日本の冬 */
 * {
-    font-family: "JetBrainsMono Nerd Font", "Noto Sans CJK JP";
-    font-size: 12px;
-    font-weight: 500;
+    font-family: "JetBrainsMono Nerd Font", "Noto Sans CJK JP", "Font Awesome 6 Free";
+    font-size: 13px;
+    font-weight: 600;
 }
 
-/* 透明な背景 */
 window#waybar {
     background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    border-radius: 15px;
+}
+
+/* Launcher */
+#custom-launcher {
+    background: linear-gradient(45deg, rgba(135, 206, 235, 0.2), rgba(255, 255, 255, 0.2));
+    margin: 5px 5px 5px 10px;
+    padding: 0 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 18px;
     color: #ffffff;
 }
 
-/* すべてのモジュールの基本スタイル - 島のような効果 */
-#custom-launcher,
-#workspaces,
-#window,
-#clock,
-#custom-weather,
-#tray,
-#cpu,
-#memory,
-#pulseaudio,
-#network,
-#battery,
-#custom-lock,
-#custom-power-menu {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 16px;
-    padding: 0 16px;
-    margin: 8px 4px;
-    min-height: 34px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+#custom-launcher:hover {
+    background: linear-gradient(45deg, rgba(135, 206, 235, 0.3), rgba(255, 255, 255, 0.3));
+    box-shadow: 0 0 15px rgba(135, 206, 235, 0.4);
+    transition: all 0.3s ease;
 }
 
-/* ホバー効果 */
-#custom-launcher:hover,
-#workspaces button:hover,
-#clock:hover,
-#custom-weather:hover,
-#cpu:hover,
-#memory:hover,
-#pulseaudio:hover,
-#network:hover,
-#battery:hover,
-#custom-lock:hover,
-#custom-power-menu:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-}
-
-/* ランチャー - 雪の結晶 */
-#custom-launcher {
-    font-size: 20px;
-    padding: 0 18px;
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.1) 0%, 
-        rgba(173, 216, 230, 0.1) 100%);
-}
-
-/* ワークスペース */
+/* Workspaces with Kanji */
 #workspaces {
-    padding: 0 8px;
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.05);
+    margin: 5px;
+    padding: 0px 5px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 #workspaces button {
-    color: rgba(255, 255, 255, 0.7);
-    padding: 0 10px;
-    margin: 0;
-    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 0 8px;
+    margin: 4px 2px;
+    border-radius: 8px;
+    border: none;
     background: transparent;
-    font-size: 15px;
-    font-weight: 600;
-    min-width: 32px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.68);
 }
 
 #workspaces button.active {
     color: #ffffff;
-    background: rgba(135, 206, 235, 0.25);
-    box-shadow: 0 0 12px rgba(135, 206, 235, 0.4);
+    background: linear-gradient(45deg, rgba(135, 206, 235, 0.3), rgba(255, 255, 255, 0.2));
+    box-shadow: 0 0 10px rgba(135, 206, 235, 0.5);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
-/* ウィンドウタイトル */
+#workspaces button:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+/* Window Title */
 #window {
-    color: rgba(255, 255, 255, 0.85);
-    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0 15px;
+    margin: 5px 10px 5px 0;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-window#waybar.empty #window {
-    background: none;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-    margin: 0;
-}
-
-/* 時計 - 中央の焦点 */
+/* Center modules */
 #clock {
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 0.5px;
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.1) 0%, 
-        rgba(240, 248, 255, 0.08) 100%);
-    min-width: 140px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0 20px;
+    margin: 5px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
-/* 天気 */
-#custom-weather {
-    font-size: 14px;
-}
-
-/* システムモニター */
+/* Right modules */
 #cpu,
-#memory {
-    min-width: 80px;
-}
-
-/* ネットワークと音量 */
+#memory,
+#battery,
 #network,
-#pulseaudio {
-    min-width: 100px;
-}
-
-/* バッテリー */
-#battery {
-    min-width: 100px;
-}
-
-#battery.charging {
-    background: linear-gradient(135deg, 
-        rgba(152, 251, 152, 0.1) 0%, 
-        rgba(255, 255, 255, 0.08) 100%);
-    color: #98fb98;
-}
-
-#battery.critical:not(.charging) {
-    background: linear-gradient(135deg, 
-        rgba(255, 182, 193, 0.15) 0%, 
-        rgba(255, 255, 255, 0.08) 100%);
-    color: #ffb6c1;
-}
-
-/* システムトレイ */
-#tray {
+#pulseaudio,
+#backlight,
+#tray,
+#custom-lock,
+#custom-power-menu {
+    background: rgba(255, 255, 255, 0.05);
+    margin: 5px 2px;
     padding: 0 12px;
-}
-
-/* 特別なボタン */
-#custom-lock {
-    min-width: 40px;
-    background: linear-gradient(135deg, 
-        rgba(135, 206, 235, 0.1) 0%, 
-        rgba(255, 255, 255, 0.08) 100%);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
 }
 
 #custom-power-menu {
-    min-width: 40px;
-    background: linear-gradient(135deg, 
-        rgba(255, 182, 193, 0.1) 0%, 
-        rgba(255, 255, 255, 0.08) 100%);
+    margin-right: 10px;
+    background: rgba(255, 118, 117, 0.1);
 }
 
-/* ツールチップ */
+#custom-power-menu:hover {
+    background: rgba(255, 118, 117, 0.2);
+    box-shadow: 0 0 10px rgba(255, 118, 117, 0.3);
+}
+
+#custom-lock:hover {
+    background: rgba(135, 206, 235, 0.2);
+    box-shadow: 0 0 10px rgba(135, 206, 235, 0.3);
+}
+
+/* Hover effects */
+#cpu:hover,
+#memory:hover,
+#battery:hover,
+#network:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#clock:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* Battery states */
+#battery.charging {
+    color: #a8e6cf;
+    background: rgba(168, 230, 207, 0.1);
+}
+
+#battery.critical:not(.charging) {
+    background: rgba(255, 118, 117, 0.2);
+    color: #ff7675;
+    animation: blink 0.5s linear infinite alternate;
+}
+
+@keyframes blink {
+    to {
+        background: rgba(255, 118, 117, 0.3);
+        box-shadow: 0 0 15px rgba(255, 118, 117, 0.5);
+    }
+}
+
+/* Network states */
+#network.disconnected {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Pulseaudio */
+#pulseaudio.muted {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Tooltips */
 tooltip {
-    background: rgba(250, 250, 250, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
 }
 
 tooltip label {
     color: #2d3436;
-    font-size: 12px;
-    padding: 8px 12px;
-}
-
-/* 特別な状態 */
-#network.disconnected,
-#pulseaudio.muted {
-    color: rgba(255, 255, 255, 0.5);
-    background: rgba(255, 255, 255, 0.05);
+    padding: 5px;
 }
