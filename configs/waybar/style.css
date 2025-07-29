@@ -1,7 +1,7 @@
 /* 日本の冬 */
 * {
     font-family: "JetBrainsMono Nerd Font", "Noto Sans CJK JP";
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
 }
 
@@ -179,14 +179,6 @@ window#waybar.empty #window {
 /* システムトレイ */
 #tray {
     padding: 0 12px;
-}
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
 }
 
 /* 特別なボタン */

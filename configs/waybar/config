@@ -1,92 +1,109 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 50,
+    "height": 48,
+    "margin-top": 8,
+    "margin-left": 10,
+    "margin-right": 10,
     "spacing": 0,
-    "exclusive": true,
-    "gtk-layer-shell": true,
-    "passthrough": false,
-    "fixed-center": true,
     
-    "modules-left": ["custom/launcher", "hyprland/workspaces", "hyprland/window"],
+    "modules-left": ["custom/launcher", "hyprland/workspaces", "custom/mediaplayer", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/weather", "tray", "cpu", "memory", "pulseaudio", "network", "battery", "custom/lock", "custom/power-menu"],
+    "modules-right": ["tray", "custom/weather", "cpu", "memory", "pulseaudio", "network", "backlight", "battery", "custom/lock", "custom/power-menu"],
     
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
         "format": "{icon}",
-        "persistent_workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": []
-        },
+        "persistent_workspaces": { "*": 5 },
         "format-icons": {
             "1": "一",
             "2": "二",
             "3": "三",
             "4": "四",
             "5": "五",
-            "6": "六",
-            "7": "七",
-            "8": "八",
-            "9": "九",
             "urgent": "急",
-            "default": "〇"
+            "default": ""
         }
     },
     
     "hyprland/window": {
         "format": "{}",
+        "max-length": 35,
+        "separate-outputs": true
+    },
+
+    "custom/mediaplayer": {
+        "format": "{icon} {}",
+        "return-type": "json",
         "max-length": 40,
-        "separate-outputs": true,
-        "rewrite": {
-            "(.*) — Mozilla Firefox": "󰈹 $1",
-            "(.*) - Discord": "󰙯 $1",
-            "(.*) - Code": "󰨞 $1"
+        "exec": "~/.config/waybar/scripts/mediaplayer.py",
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous",
+        "format-icons": {
+          "spotify": "",
+          "default": ""
         }
     },
     
     "clock": {
         "format": "{:%H:%M}",
-        "format-alt": "{:%A・%d %B}",
-        "tooltip-format": "<span font='Noto Sans CJK JP 10'>{calendar}</span>",
+        "format-alt": "{:%A, %B %d}",
+        "tooltip-format": "<tt><big>{calendar}</big></tt>",
         "calendar": {
-            "mode": "month",
+            "mode": "year",
             "mode-mon-col": 3,
-            "weeks-pos": "",
+            "weeks-pos": "right",
             "on-scroll": 1,
             "on-click-right": "mode",
             "format": {
-                "months": "<span color='#f5f5f5'><b>{}</b></span>",
-                "days": "<span color='#e8e8e8'>{}</span>",
-                "weeks": "<span color='#99a1b3'>週{}</span>",
-                "weekdays": "<span color='#d4d4d4'><b>{}</b></span>",
-                "today": "<span color='#87ceeb' background='#ffffff20'><b>{}</b></span>"
+                "months": "<span color='#88c0d0'><b>{}</b></span>",
+                "days": "<span color='#e5e9f0'><b>{}</b></span>",
+                "weeks": "<span color='#d08770'><b>W{}</b></span>",
+                "weekdays": "<span color='#81a1c1'><b>{}</b></span>",
+                "today": "<span color='#88c0d0'><b><u>{}</u></b></span>"
             }
         }
     },
     
     "cpu": {
-        "interval": 2,
-        "format": "󰻠 {usage}%",
-        "tooltip-format": "CPU使用率: {usage}%\n{load}",
-        "max-length": 10
+        "interval": 10,
+        "format": " {usage}%",
+        "tooltip": true
     },
     
     "memory": {
-        "interval": 5,
-        "format": "󰍛 {percentage}%",
-        "tooltip-format": "メモリ: {used:0.1f}G/{total:0.1f}G\nスワップ: {swapUsed:0.1f}G/{swapTotal:0.1f}G",
-        "max-length": 10
+        "interval": 30,
+        "format": " {percentage}%",
+        "tooltip-format": "RAM: {used:0.1f}G / {total:0.1f}G"
+    },
+    
+    "backlight": {
+        "device": "eDP-1",
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "on-scroll-up": "brillo -A 5",
+        "on-scroll-down": "brillo -U 5"
+    },
+    
+    "network": {
+        "format-wifi": "",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰤮",
+        "tooltip-format": "{ifname} via {gwaddr} \n{essid} ({signalStrength}%) \n{ipaddr}/{cidr} 󰩟"
+    },
+    
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "",
+        "format-icons": {
+            "default": ["", ""]
+        },
+        "on-click": "pavucontrol"
     },
     
     "battery": {
-        "bat": "BAT0",
-        "adapter": "ADP0",
-        "interval": 60,
         "states": {
             "warning": 30,
             "critical": 15
@@ -94,60 +111,38 @@
         "format": "{icon} {capacity}%",
         "format-charging": "󰂄 {capacity}%",
         "format-plugged": "󰚥 {capacity}%",
-        "format-full": "󰁹 満",
-        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-        "tooltip-format": "電池: {capacity}%\n{timeTo}"
+        "format-alt": "{icon} {time}",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     },
     
-    "network": {
-        "format-wifi": "󰤨 {signalStrength}%",
-        "format-ethernet": "󰈀 接続",
-        "format-disconnected": "󰤮 切断",
-        "tooltip-format": "{ifname}: {ipaddr}\n{essid} ({signalStrength}%)",
-        "on-click": "nm-connection-editor"
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
     },
     
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "󰂯 {volume}%",
-        "format-muted": "󰝟 消音",
-        "format-icons": {
-            "headphone": "󰋋",
-            "default": ["󰕿", "󰖀", "󰕾"]
-        },
-        "on-click": "pavucontrol",
-        "tooltip-format": "音量: {volume}%\n{desc}"
+    "custom/lock": {
+        "tooltip": false,
+        "format": "󰌾",
+        "on-click": "swaylock"
     },
     
+    "custom/power-menu": {
+        "format": "󰐥",
+        "tooltip": false,
+        "on-click": "bash ~/.config/waybar/scripts/power-menu/powermenu.sh &"
+    },
+    
+    "custom/launcher": {
+        "format": "雪",
+        "tooltip": false,
+        "on-click": "rofi -show drun &"
+    },
+
     "custom/weather": {
         "exec": "python3 ~/.config/waybar/scripts/weather.py",
         "restart-interval": 300,
         "return-type": "json",
         "format": "{}",
         "tooltip": true
-    },
-    
-    "tray": {
-        "icon-size": 16,
-        "spacing": 8,
-        "show-passive-items": true
-    },
-    
-    "custom/lock": {
-        "format": "󰌾",
-        "on-click": "swaylock",
-        "tooltip-format": "画面ロック"
-    },
-    
-    "custom/power-menu": {
-        "format": "󰐥",
-        "on-click": "bash ~/.config/waybar/scripts/power-menu/powermenu.sh",
-        "tooltip-format": "電源メニュー"
-    },
-    
-    "custom/launcher": {
-        "format": "❄",
-        "on-click": "rofi -show drun",
-        "tooltip-format": "アプリケーション"
     }
 }
