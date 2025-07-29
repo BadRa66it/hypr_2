@@ -9,20 +9,37 @@
     
     "modules-left": ["custom/launcher", "hyprland/workspaces", "hyprland/window", "custom/weather"],
     "modules-center": ["clock"],
-    "modules-right": ["tray", "cpu", "memory", "pulseaudio", "custom/wifi", "network", "backlight", "battery", "custom/lock", "custom/power-menu"],
+    "modules-right": ["tray", "cpu", "memory", "pulseaudio", "network", "backlight", "battery", "custom/lock", "custom/power-menu"],
     
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
         "format": "{icon}",
         "persistent_workspaces": {
-            "1": [], "2": [], "3": [], "4": [], "5": [],
-            "6": [], "7": [], "8": [], "9": []
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": []
         },
         "format-icons": {
-            "1": "一", "2": "二", "3": "三", "4": "四", "5": "五",
-            "6": "六", "7": "七", "8": "八", "9": "九", "10": "十",
-            "urgent": "急", "focused": "", "default": ""
+            "1": "一",
+            "2": "二",
+            "3": "三",
+            "4": "四",
+            "5": "五",
+            "6": "六",
+            "7": "七",
+            "8": "八",
+            "9": "九",
+            "10": "十",
+            "urgent": "急",
+            "focused": "",
+            "default": ""
         }
     },
     
@@ -71,30 +88,24 @@
         "device": "eDP-1",
         "format": "{icon}",
         "tooltip-format": "明るさ: {percent}%",
-        "format-icons": ["🔅", "🔆"],
+        "format-icons": ["󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"],
         "on-scroll-up": "brillo -A 5",
         "on-scroll-down": "brillo -U 5"
     },
     
     "network": {
         "format-wifi": "{icon}",
-        "format-ethernet": "🌐",
-        "format-disconnected": "❌",
+        "format-ethernet": " ",
+        "format-disconnected": "󰤮",
         "tooltip-format": "{essid} ({signalStrength}%)",
-        "format-icons": ["📶"]
-    },
-    
-    "custom/wifi": {
-        "format": "📶",
-        "on-click": "~/.config/waybar/scripts/network/rofi-wifi-menu.sh &",
-        "tooltip-format": "Wi-Fi設定"
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
     },
     
     "pulseaudio": {
         "format": "{icon}",
-        "format-muted": "🔇",
+        "format-muted": "󰝟",
         "format-icons": {
-            "default": ["🔈", "🔉", "🔊"]
+            "default": ["󰕿", "󰖀", "󰕾"]
         },
         "on-click": "pavucontrol",
         "tooltip-format": "音量: {volume}%"
@@ -112,11 +123,11 @@
         "format": "{icon}",
         "format-warning": "{icon}",
         "format-critical": "{icon}",
-        "format-charging": "🔌",
-        "format-plugged": "🔌",
+        "format-charging": "󰂄",
+        "format-plugged": "󰚥",
         "format-alt": "{icon} {time}",
-        "format-full": "🔋",
-        "format-icons": ["🪫", "🔋"],
+        "format-full": "󰁹",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
         "tooltip-format": "電池: {capacity}% - {time}"
     },
     
@@ -128,11 +139,11 @@
     "custom/lock": {
         "tooltip": false,
         "on-click": "swaylock",
-        "format": "🔒"
+        "format": "󰌾"
     },
     
     "custom/power-menu": {
-        "format": "⏻",
+        "format": "󰐥",
         "on-click": "bash ~/.config/waybar/scripts/power-menu/powermenu.sh &",
         "tooltip-format": "電源メニュー"
     },
