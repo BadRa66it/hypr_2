@@ -2,48 +2,59 @@
     font-family: "JetBrainsMono Nerd Font", "Noto Sans CJK JP", "Font Awesome 6 Free";
     font-size: 13px;
     font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 window#waybar {
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    color: #ffffff;
-    border-radius: 15px;
+    color: #e5e9f0;
 }
 
-/* Launcher */
-#custom-launcher {
-    background: linear-gradient(45deg, rgba(135, 206, 235, 0.2), rgba(255, 255, 255, 0.2));
-    margin: 5px 5px 5px 10px;
-    padding: 0 15px;
-    border-radius: 10px;
+/* Base style for all modules */
+#custom-launcher, #workspaces, #window, #clock, #cpu, #memory, #battery,
+#network, #pulseaudio, #backlight, #tray, #custom-lock, #custom-power-menu,
+#custom-weather, #custom-mediaplayer {
+    background-color: rgba(255, 255, 255, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    margin: 6px 5px;
+    padding: 0 13px;
+}
+
+/* Hover effect for most modules */
+#cpu:hover, #memory:hover, #battery:hover, #network:hover, #pulseaudio:hover,
+#backlight:hover, #clock:hover, #custom-weather:hover, #custom-mediaplayer:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+/* Launcher "Yuki" - 雪 */
+#custom-launcher {
+    background: linear-gradient(135deg, rgba(173, 216, 230, 0.25), rgba(255, 255, 255, 0.25));
+    border-color: rgba(173, 216, 230, 0.4);
+    padding: 0 18px;
     font-size: 18px;
     color: #ffffff;
 }
 
 #custom-launcher:hover {
-    background: linear-gradient(45deg, rgba(135, 206, 235, 0.3), rgba(255, 255, 255, 0.3));
-    box-shadow: 0 0 15px rgba(135, 206, 235, 0.4);
-    transition: all 0.3s ease;
+    background: linear-gradient(135deg, rgba(173, 216, 230, 0.4), rgba(255, 255, 255, 0.35));
+    box-shadow: 0 0 15px rgba(173, 216, 230, 0.5);
 }
 
 /* Workspaces with Kanji */
 #workspaces {
-    background: rgba(255, 255, 255, 0.05);
-    margin: 5px;
-    padding: 0px 5px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0 5px;
 }
 
 #workspaces button {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.7);
     padding: 0 8px;
-    margin: 4px 2px;
+    margin: 4px 3px;
     border-radius: 8px;
-    border: none;
     background: transparent;
+    border: none;
     font-size: 16px;
     font-weight: bold;
     transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.68);
@@ -51,124 +62,83 @@ window#waybar {
 
 #workspaces button.active {
     color: #ffffff;
-    background: linear-gradient(45deg, rgba(135, 206, 235, 0.3), rgba(255, 255, 255, 0.2));
-    box-shadow: 0 0 10px rgba(135, 206, 235, 0.5);
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    background: linear-gradient(45deg, rgba(173, 216, 230, 0.4), rgba(255, 255, 255, 0.3));
+    box-shadow: 0 0 10px rgba(173, 216, 230, 0.5);
 }
 
 #workspaces button:hover {
     color: #ffffff;
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
 }
 
 /* Window Title */
 #window {
-    color: rgba(255, 255, 255, 0.8);
-    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.85);
     padding: 0 15px;
-    margin: 5px 10px 5px 0;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Center modules */
+/* Clock */
 #clock {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 0 20px;
-    margin: 5px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: bold;
     color: #ffffff;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    padding: 0 20px;
 }
 
-/* Right modules */
-#cpu,
-#memory,
-#battery,
-#network,
-#pulseaudio,
-#backlight,
-#tray,
-#custom-lock,
+/* Special modules */
 #custom-power-menu {
-    background: rgba(255, 255, 255, 0.05);
-    margin: 5px 2px;
-    padding: 0 12px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.9);
-}
-
-#custom-power-menu {
-    margin-right: 10px;
-    background: rgba(255, 118, 117, 0.1);
+    background-color: rgba(255, 182, 193, 0.15); /* Soft Pink/Coral */
+    border-color: rgba(255, 182, 193, 0.2);
 }
 
 #custom-power-menu:hover {
-    background: rgba(255, 118, 117, 0.2);
-    box-shadow: 0 0 10px rgba(255, 118, 117, 0.3);
+    background-color: rgba(255, 182, 193, 0.3);
+    box-shadow: 0 0 10px rgba(255, 182, 193, 0.4);
+}
+
+#custom-lock {
+    background-color: rgba(173, 216, 230, 0.15); /* Frosty Blue */
+    border-color: rgba(173, 216, 230, 0.2);
 }
 
 #custom-lock:hover {
-    background: rgba(135, 206, 235, 0.2);
-    box-shadow: 0 0 10px rgba(135, 206, 235, 0.3);
-}
-
-/* Hover effects */
-#cpu:hover,
-#memory:hover,
-#battery:hover,
-#network:hover,
-#pulseaudio:hover,
-#backlight:hover,
-#clock:hover {
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease;
+    background-color: rgba(173, 216, 230, 0.3);
+    box-shadow: 0 0 10px rgba(173, 216, 230, 0.4);
 }
 
 /* Battery states */
 #battery.charging {
-    color: #a8e6cf;
-    background: rgba(168, 230, 207, 0.1);
+    color: #a3be8c; /* Soft Green */
+    background: rgba(163, 190, 140, 0.15);
 }
 
 #battery.critical:not(.charging) {
-    background: rgba(255, 118, 117, 0.2);
-    color: #ff7675;
-    animation: blink 0.5s linear infinite alternate;
+    background: rgba(255, 182, 193, 0.2);
+    color: #ffb6c1; /* Soft Pink */
+    animation: blink 0.8s linear infinite alternate;
 }
 
 @keyframes blink {
     to {
-        background: rgba(255, 118, 117, 0.3);
-        box-shadow: 0 0 15px rgba(255, 118, 117, 0.5);
+        background: rgba(255, 182, 193, 0.4);
+        box-shadow: 0 0 15px rgba(255, 182, 193, 0.5);
     }
 }
 
-/* Network states */
-#network.disconnected {
-    background: rgba(255, 255, 255, 0.05);
-    color: rgba(255, 255, 255, 0.4);
-}
-
-/* Pulseaudio */
+/* Network & Audio states */
+#network.disconnected,
 #pulseaudio.muted {
-    background: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.05);
     color: rgba(255, 255, 255, 0.4);
 }
 
 /* Tooltips */
 tooltip {
-    background: rgba(255, 255, 255, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(30, 30, 42, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
 }
 
 tooltip label {
-    color: #2d3436;
-    padding: 5px;
+    color: #e5e9f0;
+    padding: 8px;
 }
