@@ -1,144 +1,247 @@
+/* 日本の冬 */
 * {
-    font-family: "JetBrainsMono Nerd Font", "Noto Sans CJK JP", "Font Awesome 6 Free";
+    font-family: "JetBrainsMono Nerd Font", "Noto Sans CJK JP";
     font-size: 13px;
-    font-weight: 600;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    font-weight: 500;
 }
 
+/* 透明な背景 */
 window#waybar {
     background: transparent;
-    color: #e5e9f0;
-}
-
-/* Base style for all modules */
-#custom-launcher, #workspaces, #window, #clock, #cpu, #memory, #battery,
-#network, #pulseaudio, #backlight, #tray, #custom-lock, #custom-power-menu,
-#custom-weather, #custom-mediaplayer {
-    background-color: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    margin: 6px 5px;
-    padding: 0 13px;
-}
-
-/* Hover effect for most modules */
-#cpu:hover, #memory:hover, #battery:hover, #network:hover, #pulseaudio:hover,
-#backlight:hover, #clock:hover, #custom-weather:hover, #custom-mediaplayer:hover {
-    background-color: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-    transition: all 0.3s ease;
-}
-
-/* Launcher "Yuki" - 雪 */
-#custom-launcher {
-    background: linear-gradient(135deg, rgba(173, 216, 230, 0.25), rgba(255, 255, 255, 0.25));
-    border-color: rgba(173, 216, 230, 0.4);
-    padding: 0 18px;
-    font-size: 18px;
     color: #ffffff;
 }
 
-#custom-launcher:hover {
-    background: linear-gradient(135deg, rgba(173, 216, 230, 0.4), rgba(255, 255, 255, 0.35));
-    box-shadow: 0 0 15px rgba(173, 216, 230, 0.5);
+/* 基本的なモジュールスタイル */
+.modules-left,
+.modules-center,
+.modules-right {
+    background: transparent;
+    margin: 8px 0;
 }
 
-/* Workspaces with Kanji */
+/* すべてのモジュールの基本スタイル - 島のような効果 */
+#custom-launcher,
+#workspaces,
+#window,
+#clock,
+#custom-weather,
+#tray,
+#cpu,
+#memory,
+#pulseaudio,
+#network,
+#battery,
+#custom-lock,
+#custom-power-menu {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 0 16px;
+    margin: 0 4px;
+    min-height: 34px;
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.08),
+        0 1px 3px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ホバー効果 */
+#custom-launcher:hover,
+#workspaces button:hover,
+#clock:hover,
+#custom-weather:hover,
+#cpu:hover,
+#memory:hover,
+#pulseaudio:hover,
+#network:hover,
+#battery:hover,
+#custom-lock:hover,
+#custom-power-menu:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 6px 16px rgba(0, 0, 0, 0.1),
+        0 2px 4px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+/* ランチャー - 雪の結晶 */
+#custom-launcher {
+    font-size: 20px;
+    padding: 0 18px;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(173, 216, 230, 0.1) 100%);
+}
+
+/* ワークスペース */
 #workspaces {
-    padding: 0 5px;
+    padding: 0 8px;
+    background: rgba(255, 255, 255, 0.06);
 }
 
 #workspaces button {
     color: rgba(255, 255, 255, 0.7);
-    padding: 0 8px;
-    margin: 4px 3px;
-    border-radius: 8px;
+    padding: 0 10px;
+    margin: 0;
+    border-radius: 12px;
     background: transparent;
-    border: none;
-    font-size: 16px;
-    font-weight: bold;
-    transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.68);
+    font-size: 15px;
+    font-weight: 600;
+    min-width: 32px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #workspaces button.active {
     color: #ffffff;
-    background: linear-gradient(45deg, rgba(173, 216, 230, 0.4), rgba(255, 255, 255, 0.3));
-    box-shadow: 0 0 10px rgba(173, 216, 230, 0.5);
+    background: rgba(135, 206, 235, 0.25);
+    box-shadow: 
+        0 0 12px rgba(135, 206, 235, 0.3),
+        inset 0 0 12px rgba(135, 206, 235, 0.1);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
 }
 
-#workspaces button:hover {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.2);
-}
-
-/* Window Title */
+/* ウィンドウタイトル */
 #window {
     color: rgba(255, 255, 255, 0.85);
-    padding: 0 15px;
+    font-weight: 400;
 }
 
-/* Clock */
+window#waybar.empty #window {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* 時計 - 中央の焦点 */
 #clock {
-    font-weight: bold;
-    color: #ffffff;
-    padding: 0 20px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(240, 248, 255, 0.08) 100%);
+    min-width: 140px;
+    text-align: center;
 }
 
-/* Special modules */
-#custom-power-menu {
-    background-color: rgba(255, 182, 193, 0.15); /* Soft Pink/Coral */
-    border-color: rgba(255, 182, 193, 0.2);
+/* 天気 */
+#custom-weather {
+    font-size: 14px;
 }
 
-#custom-power-menu:hover {
-    background-color: rgba(255, 182, 193, 0.3);
-    box-shadow: 0 0 10px rgba(255, 182, 193, 0.4);
+/* システムモニター */
+#cpu,
+#memory {
+    min-width: 80px;
+    font-size: 12px;
 }
 
-#custom-lock {
-    background-color: rgba(173, 216, 230, 0.15); /* Frosty Blue */
-    border-color: rgba(173, 216, 230, 0.2);
+/* ネットワークと音量 */
+#network,
+#pulseaudio {
+    min-width: 100px;
 }
 
-#custom-lock:hover {
-    background-color: rgba(173, 216, 230, 0.3);
-    box-shadow: 0 0 10px rgba(173, 216, 230, 0.4);
+/* バッテリー */
+#battery {
+    min-width: 100px;
 }
 
-/* Battery states */
 #battery.charging {
-    color: #a3be8c; /* Soft Green */
-    background: rgba(163, 190, 140, 0.15);
+    background: linear-gradient(135deg, 
+        rgba(152, 251, 152, 0.1) 0%, 
+        rgba(255, 255, 255, 0.08) 100%);
+    color: #98fb98;
 }
 
 #battery.critical:not(.charging) {
-    background: rgba(255, 182, 193, 0.2);
-    color: #ffb6c1; /* Soft Pink */
-    animation: blink 0.8s linear infinite alternate;
+    background: linear-gradient(135deg, 
+        rgba(255, 182, 193, 0.15) 0%, 
+        rgba(255, 255, 255, 0.08) 100%);
+    color: #ffb6c1;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-@keyframes blink {
-    to {
-        background: rgba(255, 182, 193, 0.4);
-        box-shadow: 0 0 15px rgba(255, 182, 193, 0.5);
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
     }
 }
 
-/* Network & Audio states */
-#network.disconnected,
-#pulseaudio.muted {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: rgba(255, 255, 255, 0.4);
+/* システムトレイ */
+#tray {
+    padding: 0 12px;
 }
 
-/* Tooltips */
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
+
+/* 特別なボタン */
+#custom-lock {
+    background: linear-gradient(135deg, 
+        rgba(135, 206, 235, 0.1) 0%, 
+        rgba(255, 255, 255, 0.08) 100%);
+    min-width: 40px;
+    text-align: center;
+}
+
+#custom-power-menu {
+    background: linear-gradient(135deg, 
+        rgba(255, 182, 193, 0.1) 0%, 
+        rgba(255, 255, 255, 0.08) 100%);
+    min-width: 40px;
+    text-align: center;
+}
+
+/* ツールチップ */
 tooltip {
-    background: rgba(30, 30, 42, 0.9);
+    background: rgba(250, 250, 250, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
+    border-radius: 12px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.12),
+        0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 tooltip label {
-    color: #e5e9f0;
-    padding: 8px;
+    color: #2d3436;
+    font-size: 12px;
+    padding: 8px 12px;
+}
+
+/* 特別な状態 */
+#network.disconnected {
+    color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+#pulseaudio.muted {
+    color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* マージン調整 */
+.modules-left {
+    margin-left: 8px;
+}
+
+.modules-right {
+    margin-right: 8px;
 }
