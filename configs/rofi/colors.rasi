@@ -1,17 +1,15 @@
-
 /**
- *
- * Author : Levi Lacoss (fishyfishfish55)
- * Github : @fishyfishfish55
- *
- * Colors
- **/
+ * Author : Elbek
+ * Github : @BadRa66it
+ */
 
 * {
-    background:     #20212CFF;
-    background-alt: #282B3CFF;
-    foreground:     #C0CAF5;
-    selected:       #7A95C9;
-    active:         #414868;
-    urgent:         #ECD3A0;
+    /* Основные цвета */
+    background:     rgba(30, 35, 48, 0.75);
+    background-alt: rgba(255, 255, 255, 0.1);
+    foreground:     #e5e9f0;
+    selected:       rgba(136, 192, 208, 0.4);
+    active:         rgba(191, 97, 106, 0.3); 
+    urgent:         rgba(191, 97, 106, 0.3);
+    border-color:   #88c0d0;
 }

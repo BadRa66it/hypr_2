@@ -7,8 +7,7 @@ italic_font      auto
 bold_italic_font auto
 
 font_size 14
-background_opacity 0.7
-background_blur 30
+background_opacity 0.3
 
 # window settings
 initial_window_width 95c
@@ -19,53 +18,58 @@ confirm_os_window_close 0
 # Upstream colors {{{
 
 # Special
-background #1e1e2a
-foreground #e5e9f0 
+background #14151e 
+foreground #98b0d3 
 
 # Black
-color0 #3b4252
-color8 #4c566a
+color0 #151720
+color8 #4f5572 
 
-# Red (soft coral)
-color1 #bf616a
-color9 #bf616a
+# Red
+color1 #dd6777
+color9 #e26c7c
 
 # Green
-color2  #a3be8c
-color10 #a3be8c
+color2  #90ceaa
+color10 #95d3af
 
 # Yellow
-color3  #ebcb8b
-color11 #ebcb8b
+color3  #ecd3a0
+color11 #f1d8a5
 
-# Blue (frosty)
-color4  #81a1c1
-color12 #81a1c1
+# Blue
+color4  #86aaec
+color12 #8baff1
 
 # Magenta
-color5  #b48ead
-color13 #b48ead
+color5  #c296eb
+color13 #c79bf0
 
-# Cyan (main accent)
-color6  #88c0d0
-color14 #88c0d0
+# Cyan
+color6  #93cee9
+color14 #98d3ee
 
 # White
-color7  #e5e9f0
-color15 #eceff4
+color7  #cbced3
+color15 #d0d3d8
 
 # Cursor
-cursor #88c0d0
-cursor_text_color #1e1e2a
+cursor #cbced3
+cursor_text_color #a5b6cf
 
 # Selection highlight
-selection_foreground #1e1e2a
-selection_background #88c0d0
+selection_foreground #a5b6cf
+selection_background #1c1e27
+
+
+# The color for highlighting URLs on mouse-over
+# url_color #9ece6a
+url color #5de4c7
 
 # Window borders
-active_border_color #88c0d0
-inactive_border_color #4c566a
-
+active_border_color #3d59a1
+inactive_border_color #101014
+bell_border_color #fffac2
 
 # Tab bar
 tab_bar_style fade
