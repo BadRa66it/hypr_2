@@ -12,13 +12,12 @@ NC='\033[0m' # No Color
 echo -e "${PURPLE}"
 cat << "EOF"
 ╔══════════════════════════════════════╗
-║        Waybar Auto Installer        ║
-║     Hyprland + Japanese Theme       ║
+║        Waybar Auto Installer         ║
+║     Hyprland + Japanese Theme        ║
 ╚══════════════════════════════════════╝
 EOF
 echo -e "${NC}"
 
-# Функция для красивого вывода
 print_status() {
     echo -e "${BLUE}[INFO]${NC} $1"
 }
