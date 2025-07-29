@@ -125,7 +125,6 @@ window#waybar.empty #window {
         rgba(255, 255, 255, 0.1) 0%, 
         rgba(240, 248, 255, 0.08) 100%);
     min-width: 140px;
-    text-align: center;
 }
 
 /* 天気 */
@@ -186,7 +185,6 @@ window#waybar.empty #window {
         rgba(135, 206, 235, 0.1) 0%, 
         rgba(255, 255, 255, 0.08) 100%);
     min-width: 40px;
-    text-align: center;
 }
 
 #custom-power-menu {
@@ -194,7 +192,6 @@ window#waybar.empty #window {
         rgba(255, 182, 193, 0.1) 0%, 
         rgba(255, 255, 255, 0.08) 100%);
     min-width: 40px;
-    text-align: center;
 }
 
 /* ツールチップ */
